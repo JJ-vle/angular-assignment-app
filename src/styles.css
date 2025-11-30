@@ -1,1 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
+@import "@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+@use '@angular/material' as mat;
+
+@include mat.core();
+@include mat.all-component-themes(mat.define-theme());
+
+
+.container {
+  padding: 20px;
+  max-width: 800px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.icon-row button,
+.fab-row button {
+  margin-right: 12px;
+}
+
+h3 {
+  margin-top: 24px;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
