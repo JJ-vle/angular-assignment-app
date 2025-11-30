@@ -1,0 +1,20 @@
+<p>assignments works!</p>
+<p>Titre = {{titre}}</p>
+
+<mat-divider></mat-divider>
+@for(assignment of assignments; track assignment.nom) {
+    <div>
+        <h3>{{assignment.nom}}</h3>
+        @if(assignment.rendu){
+            <p>
+                Le devoir a été rendu le {{assignment.dateDeRendu | date: 'dd/MM/yyyy'}}
+            </p>
+        }
+        @else {
+            <p>
+                Le devoir doit être rendu le {{assignment.dateDeRendu | date: 'dd/MM/yyyy'}}
+            </p>
+        }
+        <mat-divider></mat-divider>
+    </div>
+}
