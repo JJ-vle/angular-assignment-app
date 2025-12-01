@@ -1,20 +1,46 @@
 <p>assignments works!</p>
 <p>Titre = {{titre}}</p>
 
+<h2>Ajout d'un assignment</h2>
+<form ngForm #assignmentForm class="form"
+    (submit)="onSubmit(); assignmentForm.reset()">
+    <mat-form-field>
+        <input matInput [(ngModel)]="nomDevoir" name="nom" #nomAssignment
+        placeholder="Nom du devoir" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <input matInput [matDatepicker]="picker"
+        placeholder="Date de rendu"
+        [(ngModel)]="dateRendu" name="date" required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <button mat-stroked-button
+        color="primary"
+        [disabled]="!ajoutActive">
+        Ajouter un devoir
+    </button>
+</form>
+
 <mat-divider></mat-divider>
 @for(assignment of assignments; track assignment.nom) {
-    <div>
-        <h3>{{assignment.nom}}</h3>
+    <!--<div [style.color]="getColor(assignment)">-->
+    <!--<div [class.rendu]="assignment.rendu" [class.nonRendu]="!assignment.rendu">
+        <h3>{{assignment.nom}}</h3>-->
         @if(assignment.rendu){
-            <p>
-                Le devoir a été rendu le {{assignment.dateDeRendu | date: 'dd/MM/yyyy'}}
+            <p appRendu>
+                Le devoir {{assignment.nom}} a rendre pour le {{assignment.dateDeRendu | date: 'dd/MM/yyyy'}},
+                a été rendu par l'étudiant.
             </p>
         }
         @else {
-            <p>
-                Le devoir doit être rendu le {{assignment.dateDeRendu | date: 'dd/MM/yyyy'}}
+            <p appNonRendu>
+                Le devoir {{assignment.nom}} a rendre pour le {{assignment.dateDeRendu | date: 'dd/MM/yyyy'}},
+                n'a pas encore été rendu.
             </p>
         }
         <mat-divider></mat-divider>
-    </div>
+    <!--</div>-->
 }
