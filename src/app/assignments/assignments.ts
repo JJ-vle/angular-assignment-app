@@ -10,14 +10,14 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { Assignment } from './assignment.model';
+import { AssignmentDetail } from "./assignment-detail/assignment-detail";
 
 
 @Component({
   selector: 'app-assignments',
   imports: [DatePipe, MatDividerModule, Rendu, NonRendu, MatButtonModule,
     FormsModule, MatInputModule, MatDatepickerModule, MatNativeDateModule,
-    MatFormFieldModule
-  ],
+    MatFormFieldModule, AssignmentDetail],
   templateUrl: './assignments.html',
   styleUrl: './assignments.css',
 })
