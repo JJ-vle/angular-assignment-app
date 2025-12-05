@@ -1,6 +1,7 @@
 <p>assignments works!</p>
 <p>Titre = {{titre}}</p>
 
+<!--
 <h2>Ajout d'un assignment</h2>
 <form ngForm #assignmentForm class="form"
     (submit)="onSubmit(); assignmentForm.reset()">
@@ -23,31 +24,46 @@
         Ajouter un devoir
     </button>
 </form>
+-->
 
-<mat-divider></mat-divider>
+@if(formVisible){
+    <app-add-assignment (newAssignment)="onNouvelAssignment($event)"></app-add-assignment>
+} @else {
+    <div class="container">
+        <button mat-flat-button
+            color="accent"
+            class="ajout-btn"
+            (click)="onAddAssignmentBtnClick()">
+            Ajouter Assignment
+        </button>
+    </div>
 
-<mat-list>
-@for(assignment of assignments; track assignment.nom) {
-    <h3 mat-subheader>{{assignment.dateDeRendu | date}}</h3>
+    <mat-divider></mat-divider>
 
-    <mat-list-item (click)="assignmentClique(assignment)">
-        @if(assignment.rendu){
-            <p appRendu>
-                Le devoir {{assignment.nom}} a rendre pour le {{assignment.dateDeRendu | date: 'dd/MM/yyyy'}},
-                a été rendu par l'étudiant.
-            </p>
-        }
-        @else {
-            <p appNonRendu>
-                Le devoir {{assignment.nom}} a rendre pour le {{assignment.dateDeRendu | date: 'dd/MM/yyyy'}},
-                n'a pas encore été rendu.
-            </p>
-        }
-        </mat-list-item>
+    <mat-list>
+    @for(assignment of assignments; track assignment.nom) {
+        <h3 mat-subheader>{{assignment.dateDeRendu | date}}</h3>
 
-        <mat-divider></mat-divider>
+        <mat-list-item (click)="assignmentClique(assignment)">
+            @if(assignment.rendu){
+                <p appRendu>
+                    Le devoir {{assignment.nom}} a rendre pour le {{assignment.dateDeRendu | date: 'dd/MM/yyyy'}},
+                    a été rendu par l'étudiant.
+                </p>
+            }
+            @else {
+                <p appNonRendu>
+                    Le devoir {{assignment.nom}} a rendre pour le {{assignment.dateDeRendu | date: 'dd/MM/yyyy'}},
+                    n'a pas encore été rendu.
+                </p>
+            }
+            </mat-list-item>
+
+            <mat-divider></mat-divider>
+    }
+    </mat-list>
+
+    <h1>Details d'un assignment</h1>
+    <app-assignment-detail [assignmentTransmis]="assignmentSelectionne"></app-assignment-detail>
+
 }
-</mat-list>
-
-<h1>Details d'un assignment</h1>
-<app-assignment-detail [assignmentTransmis]="assignmentSelectionne"></app-assignment-detail>

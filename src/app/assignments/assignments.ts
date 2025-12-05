@@ -12,13 +12,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatListModule } from '@angular/material/list';
 import { Assignment } from './assignment.model';
 import { AssignmentDetail } from "./assignment-detail/assignment-detail";
+import { AddAssignment } from "./add-assignment/add-assignment";
 
 
 @Component({
   selector: 'app-assignments',
   imports: [DatePipe, MatDividerModule, Rendu, NonRendu, MatButtonModule,
     FormsModule, MatInputModule, MatDatepickerModule, MatNativeDateModule,
-    MatFormFieldModule, MatListModule, AssignmentDetail],
+    MatFormFieldModule, MatListModule, AssignmentDetail, AddAssignment],
   templateUrl: './assignments.html',
   styleUrl: './assignments.css',
 })
@@ -28,6 +29,8 @@ export class Assignments implements OnInit {
   nomDevoir:string = "";
   dateRendu!:Date;
   assignmentSelectionne!:Assignment;
+  formVisible = false;
+
   assignments:Assignment[] = [{
     nom: 'Angular Project',
     dateDeRendu: new Date('2024-12-31'),
@@ -49,6 +52,14 @@ export class Assignments implements OnInit {
     this.assignmentSelectionne = assignment;
   }
 
+  onAddAssignmentBtnClick(){
+    this.formVisible = true;
+  }
+
+  onNouvelAssignment(event:Assignment){
+    this.assignments.push(event);
+    this.formVisible = false;
+  }
 
   onSubmit(){
     //console.log(this.nomDevoir);
