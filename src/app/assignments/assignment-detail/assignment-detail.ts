@@ -1,12 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Assignment } from '../assignment.model';
+import { MatCardMdImage, MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-assignment-detail',
-  imports: [],
+  imports: [CommonModule, MatCardModule, MatCardMdImage,
+    MatCheckboxModule],
   templateUrl: './assignment-detail.html',
   styleUrl: './assignment-detail.css',
 })
-export class AssignmentDetail {
+export class AssignmentDetail{
+  @Input() assignmentTransmis!: Assignment;
+
+  onAssignmentRendu(){
+    if(this.assignmentTransmis){
+      this.assignmentTransmis.rendu = !this.assignmentTransmis.rendu;
+    }
+  }
 
 }
 

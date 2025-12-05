@@ -25,10 +25,12 @@
 </form>
 
 <mat-divider></mat-divider>
+
+<mat-list>
 @for(assignment of assignments; track assignment.nom) {
-    <!--<div [style.color]="getColor(assignment)">-->
-    <!--<div [class.rendu]="assignment.rendu" [class.nonRendu]="!assignment.rendu">
-        <h3>{{assignment.nom}}</h3>-->
+    <h3 mat-subheader>{{assignment.dateDeRendu | date}}</h3>
+
+    <mat-list-item (click)="assignmentClique(assignment)">
         @if(assignment.rendu){
             <p appRendu>
                 Le devoir {{assignment.nom}} a rendre pour le {{assignment.dateDeRendu | date: 'dd/MM/yyyy'}},
@@ -41,8 +43,11 @@
                 n'a pas encore été rendu.
             </p>
         }
-        <mat-divider></mat-divider>
-    <!--</div>-->
-}
+        </mat-list-item>
 
-<app-assignment-detail></app-assignment-detail>
+        <mat-divider></mat-divider>
+}
+</mat-list>
+
+<h1>Details d'un assignment</h1>
+<app-assignment-detail [assignmentTransmis]="assignmentSelectionne"></app-assignment-detail>
