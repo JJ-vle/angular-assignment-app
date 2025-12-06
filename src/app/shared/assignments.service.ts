@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Assignment } from '../assignments/assignment.model';
 import { Observable, of } from 'rxjs';
+import { LoggingService } from './logging';
 
 
 @Injectable({
@@ -45,8 +46,10 @@ export class AssignmentsService {
     return of("Assignment service: assignment supprimé !");
   }
 
-  constructor() {
+  constructor(private LoggingService:LoggingService) {
+    
     console.log("Service Assignments créé !");
-  }
+
+  } 
 
 }
