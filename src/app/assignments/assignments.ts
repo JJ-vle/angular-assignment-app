@@ -51,11 +51,8 @@ export class Assignments implements OnInit {
 
   ngOnInit():void {
 
-    // WRONG
-    const assignmentSyc = new AssignmentsService();
-
-    // CORRECT
-    this.assignments = this.assignmentsService.getAssignments();
+    //this.assignments = this.assignmentsService.getAssignments();
+    this.getAssignments();
 
     setTimeout(() => {
       this.ajoutActive = true;
@@ -71,8 +68,11 @@ export class Assignments implements OnInit {
   }
 
   onNouvelAssignment(event:Assignment){
-    this.assignments.push(event);
-    this.formVisible = false;
+    //this.assignments.push(event);
+    this.assignmentsService.addAssignments(event)
+      .subscribe(message => console.log(message));
+    
+      this.formVisible = false;
   }
 
   onSubmit(){
@@ -83,6 +83,11 @@ export class Assignments implements OnInit {
     newAssignment.rendu = false;
 
     this.assignments.push(newAssignment);
+  }
+
+  getAssignments() {
+    this.assignmentsService.getAssignments()
+      .subscribe(assignments => this.assignments = assignments);
   }
 
   getColor(a: any) {

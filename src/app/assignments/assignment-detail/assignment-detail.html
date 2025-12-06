@@ -12,13 +12,17 @@
                 Blah blah blah...
             </p>
         </mat-card-content>
-        <mat-card-actions>
+        <mat-card-actions id="bottom">
             <!--<button matButton>CLOSE</button>-->
             @if(!assignmentTransmis.rendu){
                 <mat-checkbox (click)="onAssignmentRendu()">
                     Rendu
                 </mat-checkbox>
             }
+            <button mat-flat-button color="warn" (click)="onDelete()">
+                DELETE ME
+            </button>
+
         </mat-card-actions>
     </mat-card>
 }
