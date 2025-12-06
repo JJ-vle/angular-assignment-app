@@ -13,6 +13,7 @@ import { MatListModule } from '@angular/material/list';
 import { Assignment } from './assignment.model';
 import { AssignmentDetail } from "./assignment-detail/assignment-detail";
 import { AddAssignment } from "./add-assignment/add-assignment";
+import { AssignmentsService } from "../shared/assignments.service";
 
 
 @Component({
@@ -23,6 +24,7 @@ import { AddAssignment } from "./add-assignment/add-assignment";
   templateUrl: './assignments.html',
   styleUrl: './assignments.css',
 })
+
 export class Assignments implements OnInit {
   titre = "Mon application sur les Assignments !";
   ajoutActive = false;
@@ -31,6 +33,7 @@ export class Assignments implements OnInit {
   assignmentSelectionne!:Assignment;
   formVisible = false;
 
+  /*
   assignments:Assignment[] = [{
     nom: 'Angular Project',
     dateDeRendu: new Date('2024-12-31'),
@@ -40,9 +43,20 @@ export class Assignments implements OnInit {
     nom: 'TypeScript Basics',
     dateDeRendu: new Date('2024-11-15'),
     rendu: true
-  }];
+  }];*/
+
+  assignments!: Assignment[];
+
+  constructor(private assignmentsService: AssignmentsService) { }
 
   ngOnInit():void {
+
+    // WRONG
+    const assignmentSyc = new AssignmentsService();
+
+    // CORRECT
+    this.assignments = this.assignmentsService.getAssignments();
+
     setTimeout(() => {
       this.ajoutActive = true;
     }, 2000);
@@ -72,8 +86,8 @@ export class Assignments implements OnInit {
   }
 
   getColor(a: any) {
-   if (a.rendu) return 'green';
-   else return 'red';
+    if (a.rendu) return 'green';
+    else return 'red';
   }
 
 }
