@@ -37,6 +37,3 @@ export class AssignmentDetail implements OnInit {
   }
 
 }
-
-// diapo 149
-// https://docs.google.com/presentation/d/1Z6-lyeMALH-pLg1pMFXzfJ8ZGz6TL3dYytved0445jc/edit?slide=id.ga2aa790270_0_505#slide=id.ga2aa790270_0_505

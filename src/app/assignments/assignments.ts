@@ -14,13 +14,15 @@ import { Assignment } from './assignment.model';
 import { AssignmentDetail } from "./assignment-detail/assignment-detail";
 import { AddAssignment } from "./add-assignment/add-assignment";
 import { AssignmentsService } from "../shared/assignments.service";
+import { RouterLink } from '@angular/router';
 
 
 @Component({
   selector: 'app-assignments',
   imports: [DatePipe, MatDividerModule, Rendu, NonRendu, MatButtonModule,
     FormsModule, MatInputModule, MatDatepickerModule, MatNativeDateModule,
-    MatFormFieldModule, MatListModule, AssignmentDetail, AddAssignment],
+    MatFormFieldModule, MatListModule, AssignmentDetail, AddAssignment,
+    RouterLink],
   templateUrl: './assignments.html',
   styleUrl: './assignments.css',
 })
@@ -63,6 +65,7 @@ export class Assignments implements OnInit {
     this.assignmentSelectionne = assignment;
   }
 
+  /*
   onAddAssignmentBtnClick(){
     this.formVisible = true;
   }
@@ -74,6 +77,7 @@ export class Assignments implements OnInit {
     
       this.formVisible = false;
   }
+  */
 
   onSubmit(){
     //console.log(this.nomDevoir);

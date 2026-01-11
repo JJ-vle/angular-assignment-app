@@ -26,6 +26,9 @@
 </form>
 -->
 
+
+
+<!--
 @if(formVisible){
     <app-add-assignment (newAssignment)="onNouvelAssignment($event)"></app-add-assignment>
 } @else {
@@ -66,4 +69,57 @@
     <h1>Details d'un assignment</h1>
     <app-assignment-detail [assignmentTransmis]="assignmentSelectionne"></app-assignment-detail>
 
+-->
+
+
+<!--
+<div class="container">
+    <button mat-flat-button color="accent" class=""ajout-btn
+    (click)="onAddAssignmentBtnClick()">
+    Ajouter Assignment
+    </button>
+</div>
+-->
+
+<div class="container">
+    <div class="ajout-btn">
+        <a routerLink="/add">
+            <button mat-flat-button color="accent">
+                Ajouter Assignment
+            </button>
+        </a>
+    </div>
+</div>
+
+
+<h1>Liste des Assignment</h1>
+
+<mat-divider></mat-divider>
+
+<mat-list>
+@for(assignment of assignments; track assignment.nom) {
+<nav>
+    <a routerLink="/assignment/{{assignment.id}}">
+    <h3 mat-subheader>{{assignment.dateDeRendu | date}}</h3>
+
+    <mat-list-item (click)="assignmentClique(assignment)">
+        @if(assignment.rendu){
+            <p appRendu>
+                Le devoir {{assignment.nom}} a rendre pour le {{assignment.dateDeRendu | date: 'dd/MM/yyyy'}},
+                a été rendu par l'étudiant.
+            </p>
+        }
+        @else {
+            <p appNonRendu>
+                Le devoir {{assignment.nom}} a rendre pour le {{assignment.dateDeRendu | date: 'dd/MM/yyyy'}},
+                n'a pas encore été rendu.
+            </p>
+        }
+        </mat-list-item>
+
+        <mat-divider></mat-divider>
+    </a>
+</nav>
 }
+</mat-list>
+

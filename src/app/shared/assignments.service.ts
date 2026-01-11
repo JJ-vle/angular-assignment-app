@@ -11,16 +11,19 @@ import { LoggingService } from './logging';
 export class AssignmentsService {
 
   assignments:Assignment[] = [{
+    id:1,
     nom: 'TP Angular',
     dateDeRendu: new Date('2025-09-25'),
     rendu: false
   },
   {
+    id:2,
     nom: 'Projet Java',
     dateDeRendu: new Date('2025-10-01'),
     rendu: true
   },
   {
+    id:3,
     nom: 'Examen HTML',
     dateDeRendu: new Date('2025-10-15'),
     rendu: false
@@ -37,6 +40,11 @@ export class AssignmentsService {
 
   updateAssignment(assignment:Assignment):Observable<string> {
     return of("Assignment service: assignment modifié !");
+  }
+
+  addAssignment(assignment: Assignment): Observable<string> {
+    this.assignments.push(assignment);
+    return of("Assignment added successfully");
   }
 
   deleteAssignment(assignment:Assignment):Observable<string> {
