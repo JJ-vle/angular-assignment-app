@@ -29,8 +29,15 @@ export class AssignmentsService {
     rendu: false
   }];
 
+
   getAssignments() : Observable<Assignment[]> {
     return of(this.assignments);
+  }
+
+  
+  getAssignment(id:number) : Observable<Assignment | undefined> {
+    const a = this.assignments.find(a => a.id === id);
+    return of(a);
   }
 
   addAssignments(assignment: Assignment): Observable<string> {

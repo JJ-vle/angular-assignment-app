@@ -12,5 +12,5 @@ export const routes: Routes = [
     // page home qui sera affichée avec l'url http://localhost:4200/home
     { path: 'home', component: Assignments},
     { path: 'add', component: AddAssignment},
-    { path: 'assignment/:id', component: AssignmentDetail}
+    { path: 'assignments/:id', component: AssignmentDetail}
 ];

@@ -7,6 +7,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { FormsModule } from '@angular/forms';
 import { Assignment } from '../assignment.model';
 import { AssignmentsService } from '../../shared/assignments.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-assignment',
@@ -23,7 +24,9 @@ export class AddAssignment {
   nomAssignment:string = "";
   dateRendu!:Date;
 
-  constructor(private assignmentsService: AssignmentsService) { }
+  constructor(private assignmentsService: AssignmentsService,
+              private router: Router ) { }
+
 
   onAjouterAssignment(){
     console.log("Ajout NOM = " + this.nomAssignment + " date = " + this.dateRendu);
@@ -39,6 +42,7 @@ export class AddAssignment {
     this.assignmentsService.addAssignment(newAssignment)
       .subscribe(message => {
         console.log(message);
+        this.router.navigate(['/home']);
       })
   }
 
