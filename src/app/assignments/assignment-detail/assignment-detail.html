@@ -21,7 +21,8 @@
             }
             <nav><!--[routerLink]="['/assignments',assignmentTransmis.id, 'edit']"-->
                 <button mat-stroked-button color="primary"
-                (click)="onClickEdit()">EDIT</button>
+                (click)="onClickEdit()"
+                [disabled]="!isAdmin()">EDIT</button>
             </nav>
             <button mat-flat-button color="warn" (click)="onDeleteAssignment()">
                 DELETE

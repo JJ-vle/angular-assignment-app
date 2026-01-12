@@ -3,7 +3,7 @@ import { Assignments } from './assignments/assignments';
 import { AddAssignment } from './assignments/add-assignment/add-assignment';
 import { AssignmentDetail } from './assignments/assignment-detail/assignment-detail';
 import { EditAssignmentComponent } from './assignments/edit-assignment/edit-assignment';
-//import { EditAssignmentComponent } from './assignments/edit-assignment/edit-assignment';
+import { authGuard } from './shared/auth-guard';
 
 export const routes: Routes = [
     // home page qui sera affiché avec l'url http://localhost:4200
@@ -14,5 +14,5 @@ export const routes: Routes = [
     { path: 'home', component: Assignments},
     { path: 'add', component: AddAssignment},
     { path: 'assignments/:id', component: AssignmentDetail},
-    { path: 'assignments/:id/edit', component: EditAssignmentComponent}
+    { path: 'assignments/:id/edit', component: EditAssignmentComponent, canActivate: [authGuard]},
 ];

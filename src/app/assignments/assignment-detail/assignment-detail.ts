@@ -5,6 +5,7 @@ import { MatCardMdImage, MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { AssignmentsService } from '../../shared/assignments.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '../../shared/auth.service';
 
 @Component({
   selector: 'app-assignment-detail',
@@ -16,12 +17,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 export class AssignmentDetail implements OnInit {
   //@Input()
+  
   assignmentTransmis?: Assignment;
   @Output() deleteAssignment = new EventEmitter<Assignment>();
   
   constructor(private assignmentsService: AssignmentsService,
               private route: ActivatedRoute,
-              private router: Router) { }
+              private router: Router,
+              private authService: AuthService) { }
 
   ngOnInit(): void {
     this.getAssignment();
@@ -71,6 +74,10 @@ export class AssignmentDetail implements OnInit {
     if(!this.assignmentTransmis) return;
     this.router.navigate(['assignments/${this.assignmentTransmis.id}/edit'],
     {queryParams:{nom:this.assignmentTransmis.nom}, fragment:'edition'})
+  }
+
+  isAdmin():boolean {
+    return this.authService.loggedIn;
   }
 
 }

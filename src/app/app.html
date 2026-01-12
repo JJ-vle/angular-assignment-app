@@ -94,4 +94,12 @@
 <app-assignments></app-assignments>
 -->
 
+<div class="container">
+  <h1>
+    <nav><a routerLink="/home">{{title}}</a></nav>
+  </h1>
+  <mat-slide-toggle color="primary" (click)="login()">Login</mat-slide-toggle>
+</div>
+
+
 <router-outlet/>
