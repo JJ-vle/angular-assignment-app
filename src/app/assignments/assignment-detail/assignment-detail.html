@@ -19,8 +19,12 @@
                     Rendu
                 </mat-checkbox>
             }
-            <button mat-flat-button color="warn" (click)="onDelete()">
-                DELETE ME
+            <nav><!--[routerLink]="['/assignments',assignmentTransmis.id, 'edit']"-->
+                <button mat-stroked-button color="primary"
+                (click)="onClickEdit()">EDIT</button>
+            </nav>
+            <button mat-flat-button color="warn" (click)="onDeleteAssignment()">
+                DELETE
             </button>
 
         </mat-card-actions>

@@ -46,14 +46,17 @@ export class AssignmentDetail implements OnInit {
         this.router.navigate(['/home']);
       });
   }
-
+/*
   onDelete() {
     this.assignmentsService.deleteAssignment(this.assignmentTransmis)
       .subscribe((message) => console.log(message));
 
     this.assignmentTransmis = null;
   }
+*/
 
+
+/*************************** PB ICI NON ???? ***************/
   onDeleteAssignment(){
     // On va envoyer un event au composant père pour qu'il supprime l'assignment
     this.deleteAssignment.emit(this.assignmentTransmis);
@@ -62,6 +65,12 @@ export class AssignmentDetail implements OnInit {
     // il faut remettre à null ou undefined this.assignmentTransmis
     // this.assignmentTransmis = undefined;
     this.router.navigate(['/home']);
+  }
+
+  onClickEdit() {
+    if(!this.assignmentTransmis) return;
+    this.router.navigate(['assignments/${this.assignmentTransmis.id}/edit'],
+    {queryParams:{nom:this.assignmentTransmis.nom}, fragment:'edition'})
   }
 
 }
